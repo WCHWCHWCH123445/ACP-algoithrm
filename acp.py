@@ -114,9 +114,9 @@ if __name__ == "__main__":
     scores = np.load('model_scores.npy')   # shape: (22, 5)
     y_true = np.load('true_labels.npy')    # shape: (22,)
 
-    # ===== 新增：排除模型3（索引3） =====
-    # 只保留列索引 0,1,2,4
-    scores = scores[:, [0, 1, 2, 4]]       # 现在 shape 变为 (22, 4)
+    
+    
+    scores = scores[:, [0, 1, 2, 4]]       
     print(f"加载数据：样本数 {scores.shape[0]}，模型数 {scores.shape[1]}（已剔除模型3）")
 
     # 运行 ACP 搜索（启发式搜索）
@@ -136,8 +136,7 @@ if __name__ == "__main__":
     # 输出最终结果
     print("\n" + "="*50)
     print("ACP 搜索完成！")
-    # 注意：此时 best_combo 中的索引是对应新 scores 的列索引（0~3）
-    # 如果需要映射回原始模型编号（0,1,2,4），可以这样转换：
+   
     original_indices = [0, 1, 2, 4]
     best_original = [original_indices[i] for i in best_combo]
     print(f"最优模型组合 (原始索引): {best_original}")
